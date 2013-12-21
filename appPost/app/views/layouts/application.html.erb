@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sessiones</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<table id="tPrincipal" class="Tprincipal" align="center">
+  <tr>
+    <td><table id="tSuperior" class="marcoSuperior">
+      <tr>
+      <td>
+        <table>
+            <% if current_user %>
+                <tr>
+                  <td>Bienvenido: <%= current_user.nombre %>.</td>
+                </tr> 
+                <tr>
+                  <td><%= link_to "Cerrar Session", log_out_path %></td>
+                  <td></td><td></td>
+                  <td><%= link_to 'Inicio  ', :controller=>:principal %></td>
+                  <% if (current_user.privilegio_id == 1) %>
+                    <td><%= link_to 'Ambiente',:controller=>:configuacion , :action => :index %></td>
+                  <% end %>
+                  <td></td><td></td>
+                  <td>
+                     <%= link_to 'Perfil ', :controller=>:usuario , :action => :show,:id => current_user.id %>
+                  </td> 
+               </tr>
+            <% else %>
+                  <tr>
+                    <td><%= link_to 'Iniciar',:controller=>:session, :action => :new %></td>
+                    <td></td><td></td>
+                    <td><%= link_to 'Registrar ', :controller=>:usuario , :action => :new %></td> 
+                  </tr>
+            <% end %>
+        </table>
+      </td>
+      </tr>
+      </table>
+     </td>
+  </tr>
+  <tr>
+    <td>   
+        <%= yield %>  
+    </td>
+  </tr>  
+</table>
+</body>
+</html>

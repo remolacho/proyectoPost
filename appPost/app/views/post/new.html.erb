@@ -1,0 +1,50 @@
+<p><h1>Crear Post</h1></p>
+<%= form_for :post,:url => { :action => :create } do |f| %>
+  <% if @post.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @post.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+      <td>Catgoria</td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.select :categoria_id, options_from_collection_for_select(@categoria, :id,:descripcion, @categoria) %>
+      </td>
+    </tr>
+    <tr>
+        <td><%= f.hidden_field :fecha_creacion, :value => Date.today %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :titulo%></td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :titulo %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :texto %></td>
+    </tr>
+    <tr>
+        <td><%= f.text_area :texto , :size => "70x10",
+                       :maxlength => 1000 %></td>
+    </tr>
+     <tr>
+        <td><%= f.hidden_field :estatus, :value => 1 %></td>
+     </tr>
+      <tr>
+        <td><%= f.hidden_field :usuario_id, :value => current_user.id %></td>
+     </tr>
+  </table>
+  <div class="actions"><%= f.submit "Crear Post" %></div>
+<% end %>
+
+<% flash.each do |name, msg| %>
+  <p><h3><font color="red"<%= content_tag :div, msg, :id => "flash_#{name}" %></font></h3></p>
+<% end %>

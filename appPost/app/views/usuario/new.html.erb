@@ -1,0 +1,61 @@
+<p><h1>Registrar Usuario</h1></p>
+<%= form_for :usuario,:url => { :action => :create } do |f| %>
+  <% if @usuario.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @usuario.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+      <td><%= f.label :cedula%></td>
+      <td><%= f.text_field :cedula %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :nombre %></td>
+      <td><%= f.text_field :nombre %></td>
+    </tr>
+    <tr>
+        <td><%= f.label :apellido %></td>
+        <td> <%= f.text_field :apellido %></td>
+    </tr>
+     <tr>
+        <td><%= f.label :correo%></td>
+        <td> <%= f.email_field :correo %></td>
+    </tr>
+    <tr>
+        <td><%= f.label :pais%></td>
+        <td> <%= f.text_field :pais%></td>
+    </tr>
+    <tr>
+        <td><%= f.label :ciudad%></td>
+        <td> <%= f.text_field :ciudad%></td>
+    </tr>
+     <tr>
+        <td><%= f.hidden_field :estatus, :value => 1 %></td>
+     </tr>
+     <tr>
+        <td><%= f.label :profesion%></td>
+        <td> <%= f.text_field :profesion %></td>
+     <tr>
+        <td><%= f.hidden_field :privilegio_id, :value => 2 %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :password %></td>
+      <td><%= f.password_field :password %></td>
+    </tr>
+    <tr>
+        <td><%= f.label :password_confirmacion %></td>
+        <td> <%= f.password_field :password_confirmation %></td>
+    </tr>
+  </table>
+  <div class="actions"><%= f.submit "Crear Usuario" %></div>
+<% end %>
+
+<% flash.each do |name, msg| %>
+  <p><h3><font color="red"<%= content_tag :div, msg, :id => "flash_#{name}" %></font></h3></p>
+<% end %>

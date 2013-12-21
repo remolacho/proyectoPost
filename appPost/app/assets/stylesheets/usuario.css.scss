@@ -1,0 +1,42 @@
+// Place all the styles related to the principal controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body
+{  
+
+   //background: -webkit-linear-gradient(orange, pink);
+   //background: -moz-linear-gradient(orange, pink);
+   //background: -o-linear-gradient(orange, pink);
+
+   background: -webkit-radial-gradient(#0f0, #06f);
+   background: -moz-radial-gradient(#0f0, #06f);
+   background: -o-linear-gradient(#0f0, #06f);
+  // height: 630px;
+  // width: 630px;
+}
+
+//body{background:#0f0}
+
+table.Tprincipal{
+
+  width:  80%;
+	background:#FFFFFF;
+	-webkit-box-shadow: 5px 5px 5px orange;
+	-webkit-border-radius:10px;	
+	-moz-border-radius:10px;	
+    -moz-box-shadow: 5px 5px 5px orange;
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#666666', Direction=135, Strength=4);
+ }
+
+ table.marcoSuperior{
+    width:100%;
+    height:auto;
+    background:#EBEBEB
+ }
+
+//sombras
+//div {
+ //-webkit-box-shadow: 2px 2px 5px orange;
+// -moz-box-shadow: 2px 2px 5px orange;
+// filter: progid:DXImageTransform.Microsoft.Shadow(color='#666666', Direction=135, Strength=4);
+//}

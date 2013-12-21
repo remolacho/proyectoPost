@@ -1,0 +1,18 @@
+<h1>Iniciar</h1>
+<%= form_tag :controller=>:session, :action => :create do %>
+    <table>
+    	<tr>
+    		<td><%= label_tag :correo %></td>
+    		<td><%= text_field_tag :correo, params[:correo] %></td>
+    	</tr>
+        <tr>
+        	<td><%= label_tag :password %></td>
+    		<td><%= password_field_tag :password %></td>
+        </tr>    
+    </table>
+    <%= submit_tag "Iniciar Session" %>
+<% end %>
+
+<% flash.each do |name, msg| %>
+  <p><h3><font color="red"<%= content_tag :div, msg, :id => "flash_#{name}" %></font></h3></p>
+<% end %>

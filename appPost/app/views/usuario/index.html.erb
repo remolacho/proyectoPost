@@ -1,0 +1,27 @@
+<% if current_user %>
+	<% if (current_user.privilegio_id == 1) %>
+		<p><h1>Lista de Usuarios</h1></p>
+		<table border=1>
+   			<th width=50>Id</th>
+   			<th width=100>cedula</th>
+   			<th width=100>Nombre</th>
+   			<th width=100>Apellido</th>
+   			<th width=100>Correo</th>
+   			<th width=100>Privilegio</th>
+   			<th width=100>Estatus</th>
+   			<% @usuario.each do |lista| %>
+			<tr>
+				<td> <%= lista.id %></td>
+				<td> <%= lista.cedula %></td>
+				<td> <%= lista.nombre %></td>
+				<td> <%= lista.apellido %></td>
+				<td> <%= lista.correo %></td>
+				<td> <%= lista.privilegio.descripcion %></td>
+				<td> <%= lista.estatus %></td>
+			</tr>
+			<% end %>
+		</table>
+	<% end %>
+<% else %>
+	<p><h1>Error al cargar la pagina</h1></p>
+<% end %>

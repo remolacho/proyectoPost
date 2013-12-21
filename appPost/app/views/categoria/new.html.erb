@@ -1,0 +1,30 @@
+<% if current_user %>
+<% if (current_user.privilegio_id == 1) %>
+<p><h1>Categorias </h1></p>
+<%= form_for :categoria, :url => { :action => :create } do |f| %>
+  <% if @categoria.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @categoria.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+      <td><%= f.label :descripcion %></td>
+      <td><%= f.text_field :descripcion %></td>
+    </tr>
+  </table>
+  <div class="actions"><%= f.submit "Crear Categoria" %></div>
+<% end %>
+
+<% flash.each do |name, msg| %>
+  <p><h3><font color="red"<%= content_tag :div, msg, :id => "flash_#{name}" %></font></h3></p>
+<% end %>
+<% end %>
+<% else %>
+  <p><h1>Error al cargar la pagina</h1></p>   
+<% end %>

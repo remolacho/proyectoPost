@@ -1,0 +1,24 @@
+<% if current_user %>
+	<% if (current_user.privilegio_id > 0) %>
+		<p><h1>Comunidad Virtual</h1></p>
+		<table border=1>
+   			<th width=50>Id</th>
+   			<th width=300>Titulo</th>
+   			<th width=100>Fecha</th>
+   			<th width=200>Categoria</th>
+   			<th width=100>Usuario</th>
+   			<% @post.each do |lista| %>
+			<tr>
+				<td> <%= lista.id %></td>
+				<td> <%= lista.titulo %></td>
+				<td> <%= lista.fecha_creacion %></td>
+				<td> <%= lista.categoria.descripcion %></td>
+                <td> <%= lista.usuario.nombre %></td> 
+                <td><%= link_to 'Ver ', :controller=>:comentario , :action => :show,:id => lista.id %></td>               
+			</tr>
+			<% end %>
+		</table>
+	<% end %>
+<% else %>
+	<p><h1>Error al cargar la pagina</h1></p>
+<% end %>

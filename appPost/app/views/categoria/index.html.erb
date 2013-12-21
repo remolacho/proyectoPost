@@ -1,0 +1,20 @@
+<% if current_user %>
+	<% if (current_user.privilegio_id == 1) %>
+		<p><h1>Lista de Categorias</h1></p>
+		<table border=1>
+   			<th width=50>Id</th>
+   			<th width=150>descripcion</th>
+   			<th width=50>Acc</th>
+   			<% @categoria.each do |lista| %>
+			<tr>
+				<td> <%= lista.id %></td>
+				<td> <%= lista.descripcion %></td>
+				<td><%= link_to 'Edit', :controller=>:categoria, :action => :edit, :id => lista.id %></td>
+			</tr>
+  		<% end %>
+		</table>
+		<p><%= link_to 'Crear', :controller=>:categoria , :action => :new%></p>
+	<% end %>	
+<%else%>
+	<p><h1>Error al cargar la pagina</h1></p>		
+<% end %>

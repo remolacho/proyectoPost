@@ -1,0 +1,32 @@
+<% if current_user %>
+	<% if (current_user.privilegio_id > 0) %>
+		<p><h1>Post</h1></p>
+		<table border=1>
+   			<th width=50>Id</th>
+   			<th width=300>Titulo</th>
+   			<th width=100>Fecha</th>
+   			<th width=200>Categoria</th>
+   			<th width=100>Estatus</th>
+   			<th width=150>Accion</th>
+   			<% @post.each do |lista| %>
+			<tr>
+				<td> <%= lista.id %></td>
+				<td> <%= lista.titulo %></td>
+				<td> <%= lista.fecha_creacion %></td>
+				<td> <%= lista.categoria.descripcion %></td>
+                <% if lista.estatus == 1 %>
+					<td> Abierto </td>                    
+					<td><table><tr><td><%= link_to 'Cerrar ', :controller=>:post , :action => :estado,:id => lista.id %></td><td><%= link_to 'Edit ', :controller=>:post , :action => :edit,:id => lista.id %></td><td> <%= link_to 'Ver ', :controller=>:comentario , :action => :show,:id => lista.id %></td></tr></table></td>
+				<% else %>
+					<td><font color="red"> Cerrado </font></td>
+					<td><table><tr><td><%= link_to 'Abrir ', :controller=>:post , :action => :estado,:id => lista.id %></td><td><%= link_to 'Edit ', :controller=>:post , :action => :edit,:id => lista.id %></td><td> <%= link_to 'Ver ', :controller=>:comentario , :action => :show,:id => lista.id %></td></tr></table></td>
+				<% end %>
+			</tr>
+			<% end %>
+		</table>
+	<% end %>
+<% else %>
+	<p><h1>Error al cargar la pagina</h1></p>
+<% end %>
+
+<p><%= link_to 'Nuevo', :controller=>:post , :action => :new %></p>

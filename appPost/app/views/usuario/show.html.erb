@@ -1,0 +1,46 @@
+<table> 
+    <tr>
+      <td><%= link_to 'Editar ', :controller=>:usuario , :action => :edit,:id => current_user.id %></td>
+    </tr>
+</table>
+  <table>
+    <tr>
+      <td><b><%= label_tag "cedula:" %></b></td>
+      <td><%= label_tag @usuario.cedula %></td>
+    </tr>
+     <tr>
+      <td><b><%= label_tag "nombre:" %></b></td>
+      <td><%=label_tag @usuario.nombre %></td>
+    </tr>
+    <tr>
+        <td><b><%= label_tag "apellido:" %></b></td>
+        <td> <%= label_tag @usuario.apellido %></td>
+    </tr>
+     <tr>
+        <td><b><%= label_tag "correo:" %></b></td>
+        <td> <%= label_tag @usuario.correo %></td>
+    </tr>
+    <tr>
+        <td><b><%= label_tag "pais:" %></b></td>
+        <td> <%= label_tag @usuario.pais%></td>
+    </tr>
+    <tr>
+        <td><b><%= label_tag "ciudad:" %></b></td>
+        <td> <%= label_tag @usuario.ciudad%></td>
+    </tr>
+     <tr>
+        <td><b><%= label_tag "estatus:" %></b></td>
+        <td> <%= label_tag @usuario.estatus%></td>
+     </tr>
+     <tr>
+        <td><b><%= label_tag "profesion:" %></b></td>
+        <td><%= label_tag @usuario.profesion%></td>
+      </tr>
+  </table>
+
+  <table id="tSuperior" class="marcoSuperior">
+  <tr>
+    <td><%= link_to 'Entorno Post', :controller=>:post , :action => :show, :id => current_user.id %>
+    <%= link_to 'Comunidad Post', :controller=>:post , :action => :index %></td>
+  </tr>
+  </table>

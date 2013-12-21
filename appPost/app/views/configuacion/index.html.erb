@@ -1,0 +1,7 @@
+<% if current_user %>  
+  <% if current_user.privilegio_id == 1 %>
+	<h1>Ambiente</h1>
+	<p><%= link_to 'Usuarios',:controller=>:usuario , :action => :index %></p>
+    <p><%= link_to 'Categorias ', :controller=>:categoria , :action => :index%></p>
+  <% end %>
+<% end %>

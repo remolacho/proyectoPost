@@ -1,0 +1,60 @@
+<% if current_user %>
+	<% if (current_user.privilegio_id > 0) %>
+		<p><h1>Ficha Virtual</h1></p>	
+        <table id="tSuperior" class="marcoSuperior">
+          <tr>
+            <td><b>Question: Titulo: </b><%= @post.titulo %></td><td><b>User: </b> <%= @post.usuario.nombre %></td><td><b>Categoria:</b><%= @post.categoria.descripcion %></td>
+          </tr>   
+        </table>
+        <table>
+          <tr>
+             <td><p><%= @post.texto %></p></td>
+          </tr>   
+        </table>
+        <p></p>
+        <p></p>
+        <p></p>
+          <% @comentario.each do |lista| %>
+          <table id="tSuperior" class="marcoSuperior">  
+            <tr><td><b>Answer: User: </b><%= lista.usuario.nombre %> <td></tr>
+          </table>
+          <table>
+            <tr>
+              <td align="justify"><p><%= lista.texto %></p></td>
+            </tr>
+          </table>
+          <p></p>
+          <p></p>     
+          <% end %>
+      <p></p>
+      <%= form_for :coment,:url => { :action => :create } do |f| %>
+        <% if @coment.errors.any? %>
+          <div class="error_messages">
+              <h2>Form is invalid</h2>
+              <ul>
+                <% for message in @coment.errors.full_messages %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+          </div>
+        <% end %>
+       <div><%= will_paginate(@comentario) %></div>
+              <table>
+                <tr>
+                  <td><b>Answer: </b></td>
+                </tr>
+                <tr>
+                  <td><%= f.text_area :texto , :size => "70x10",
+                       :maxlength => 1000 %></td>
+                </tr>
+              </table>
+              <div><%= f.hidden_field :fecha_creacion, :value => Date.today %></div>
+              <div><%= f.hidden_field :estatus, :value => 1 %></div>
+              <div><%= f.hidden_field :post_id, :value => @post.id %></div>
+              <div><%= f.hidden_field :usuario_id, :value => current_user.id %></div>
+              <div><%= f.submit "Enviar" %></div>
+        <% end %>
+	<% end %>
+<% else %>
+	<p><h1>Error al cargar la pagina</h1></p>
+<% end %>
